@@ -1,9 +1,8 @@
 const express = require('express')
 const path = require('path')
 const app = express()
-const PORT = 3001
+const PORT = process.env.port || 3001
 const fs = require('fs')
-// const notes = (/public/notes.html) 
 
 app.use(express.static('public'));
 
@@ -15,7 +14,7 @@ app.get('/notes', (req, res) => {
     res.sendFile(path.join(__dirname, 'notes.html'));
 });
 
-app.get('/api')
+app.get('/api/')
 
 fs.readFile('./db/db.json', 'utf8', (err, data) => {
     if (err) throw err;
@@ -28,4 +27,4 @@ fs.readFile('./db/db.json', 'utf8', (err, data) => {
 
 
 app.listen(PORT, () => 
-console.log('Server on port 3001 listening'));
+console.log(`Server on port ${PORT} listening`));
