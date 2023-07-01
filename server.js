@@ -9,24 +9,29 @@ app.use(express.static('public'));
 
 
 
-app.get('./notes', (req, res) => {
+app.get('/notes', (req, res) => {
     res.sendFile(path.join(__dirname, './public/notes.html'));
 });
 
-app.get('/api', (req, res) => {
-fs.readFile('./db/db.json', 'utf8', (err, data) => {
-    if (err) throw err;
-     res.json(JSON.parse(data));
-});
-});
+// app.get('/api', (req, res) => {
+
+// });
 
 app.get('/api/notes',(req,res) => {
+   // fs.readFile('./db/db.json', 'utf8', (err, data) => {
+    //     if (err) throw err;
+    //     res.json(JSON.parse(data));
     res.json(notes)
 });
 
 app.post('/api/notes',(req,res) => {
-    res.json(notes)
+    // fs.writeFile('./db/db.json', , (err, data) => {
+    //     if (err) throw err;
+    //     res.json(JSON.parse(data));
+res.json(notes)    
+
 });
+// });
 
 app.delete('/api/notes', (req, res) => {
     res.json()
