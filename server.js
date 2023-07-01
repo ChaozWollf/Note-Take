@@ -14,12 +14,12 @@ app.get('/notes', (req, res) => {
     res.sendFile(path.join(__dirname, 'notes.html'));
 });
 
-app.get('/api/')
+app.get('/api/', (req, res) => {
 
 fs.readFile('./db/db.json', 'utf8', (err, data) => {
     if (err) throw err;
-    res.json(JSON.parse(data));
-
+     res.json(JSON.parse(data));
+});
 });
 
 // app.get('/api/notes', (req, res) => {
