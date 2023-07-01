@@ -18,12 +18,12 @@ app.get('/notes', (req, res) => {
 // });
 
 app.get('/api/notes',(req,res) => {
-   // fs.readFile('./db/db.json', 'utf8', (err, data) => {
-    //     if (err) throw err;
-    //     res.json(JSON.parse(data));
+   fs.readFile('./db/db.json', 'utf8', (err, data) => {
+        if (err) throw err;
+        res.json(JSON.parse(data));
     res.json(notes)
 });
-
+});  
 app.post('/api/notes',(req,res) => {
     fs.readFile('./db/db.json', (err, data) => {
         if (err) throw err;
