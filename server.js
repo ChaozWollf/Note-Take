@@ -7,7 +7,7 @@ const notes = require('./db/db.json')
 const routes = require ('./routes/routes.js')
 app.use(express.static('routes'))
 app.use(express.static('public'));
-
+app.use(express.json())
 app.use(routes)
 
 app.get('/notes', (req, res) => {

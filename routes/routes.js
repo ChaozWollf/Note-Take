@@ -9,8 +9,9 @@ router.get('/api', (req, res) => {
 router.get('/api/notes', (req, res) => {
     fs.readFile('./db/db.json', 'utf8', (err, data) => {
         if (err) throw err;
-        res.json(JSON.parse(data));
-        res.json(notes)
+        const notes = JSON.parse(data)
+       console.log(notes);
+        res.json(notes);
     });
 });
 
@@ -18,6 +19,7 @@ router.post('/api/notes', (req, res) => {
     fs.readFile('./db/db.json', (err, data) => {
         if (err) throw err;
         let notes = JSON.parse(data);
+        console.log(req.body)
         notes.push(req.body);
         fs.writeFile('./db/db.json', JSON.stringify(notes), (err) => {
             if (err) throw err;
