@@ -28,7 +28,7 @@ app.post('/api/notes',(req,res) => {
     fs.readFile('./db/db.json', (err, data) => {
         if (err) throw err;
         res.json(JSON.parse(data));
-        res.json.push(notes, data)
+        res.json.push(notes, data);
         fs.writeFile('./db.db.json', notes, (err))
         if (err) throw err;
         res.json(JSON.stringify(notes))
@@ -36,7 +36,7 @@ app.post('/api/notes',(req,res) => {
     res.json(notes)    
 
 });
-// });
+});
 
 app.delete('/api/notes', (req, res) => {
     res.json()
