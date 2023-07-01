@@ -1,13 +1,12 @@
-const express = require('express')
-const app = express()
+const router = require('express').Router()
 const fs = require('fs')
 
-app.get('/api', (req, res) => {
+router.get('/api', (req, res) => {
 
 });
 
 //retrieve notes
-app.get('/api/notes', (req, res) => {
+router.get('/api/notes', (req, res) => {
     fs.readFile('./db/db.json', 'utf8', (err, data) => {
         if (err) throw err;
         res.json(JSON.parse(data));
@@ -15,7 +14,7 @@ app.get('/api/notes', (req, res) => {
     });
 });
 
-app.post('/api/notes', (req, res) => {
+router.post('/api/notes', (req, res) => {
     fs.readFile('./db/db.json', (err, data) => {
         if (err) throw err;
         let notes = JSON.parse(data);
@@ -44,7 +43,8 @@ app.post('/api/notes', (req, res) => {
 
 
 //delete notes
-app.delete('/api/notes', (req, res) => {
+router.delete('/api/notes', (req, res) => {
     res.json()
 });
 
+module.exports = router

@@ -4,9 +4,11 @@ const app = express();
 const PORT = process.env.port || 3001
 const fs = require('fs')
 const notes = require('./db/db.json')
-const routes = require('./routes/routes.js');
+const routes = require ('./routes/routes.js')
 app.use(express.static('routes'))
 app.use(express.static('public'));
+
+app.use(routes)
 
 app.get('/notes', (req, res) => {
     res.sendFile(path.join(__dirname, './public/notes.html'));
