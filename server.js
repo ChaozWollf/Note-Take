@@ -25,10 +25,15 @@ app.get('/api/notes',(req,res) => {
 });
 
 app.post('/api/notes',(req,res) => {
-    // fs.writeFile('./db/db.json', , (err, data) => {
-    //     if (err) throw err;
-    //     res.json(JSON.parse(data));
-res.json(notes)    
+    fs.readFile('./db/db.json', (err, data) => {
+        if (err) throw err;
+        res.json(JSON.parse(data));
+        res.json.push(notes, data)
+        fs.writeFile('./db.db.json', notes, (err))
+        if (err) throw err;
+        res.json(JSON.stringify(notes))
+
+    res.json(notes)    
 
 });
 // });
