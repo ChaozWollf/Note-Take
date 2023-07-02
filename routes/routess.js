@@ -4,7 +4,7 @@ app.get('/notes', (req, res) => {
     );
 });
 
-app.get('/notes', (req, res) => {
+app.get('*', (req, res) => {
     res.send(
         `<p>${index.html}</p>`
     );
