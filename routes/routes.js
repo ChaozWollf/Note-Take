@@ -1,6 +1,6 @@
 const router = require('express').Router()
 const fs = require('fs')
-
+const { v4: uuidv4 } = require('uuid');
 router.get('/api', (req, res) => {
 
 });
@@ -18,8 +18,8 @@ router.get('/api/notes', (req, res) => {
 router.post('/api/notes', (req, res) => {
     fs.readFile('./db/db.json', (err, data) => {
         if (err) throw err;
-        let notes = JSON.parse(data);
-        console.log(req.body)
+        req.body.id = uuidv4()
+        const notes = JSON.parse(data);
         notes.push(req.body);
         fs.writeFile('./db/db.json', JSON.stringify(notes), (err) => {
             if (err) throw err;
@@ -28,25 +28,20 @@ router.post('/api/notes', (req, res) => {
     });
 });
 
-//save notes
-// app.post('/api/notes', (req, res) => {
-//     fs.readFile('./db/db.json', (err, data) => {
-//         if (err) throw err;
-//         res.json(JSON.parse(data));
-//         res.json.push(notes, data);
-//         fs.writeFile('./db.db.json', notes, (err))
-//         if (err) throw err;
-//         res.json(JSON.stringify(notes))
-
-//         res.json(notes)
-
-//     });
-// });
-
-
 //delete notes
-router.delete('/api/notes', (req, res) => {
-    res.json()
+router.delete('/api/notes/:id', (req, res) => {
+    const id = req.params.id
+    fs.readFile('./db/db.json', 'utf8', (err, data) => {
+        if (err) throw err;
+        const notes = JSON.parse(data)
+        console.log(notes);
+        const newNotes = notes.filter(note => note.id !=id)
+        fs.writeFile('./db/db.json', JSON.stringify(newNotes), (err) => {
+            if (err) throw err;
+            res.json(newNotes);
+        });
+        
+    });
 });
 
 module.exports = router

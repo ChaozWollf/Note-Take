@@ -2,8 +2,8 @@ const express = require('express')
 const path = require('path')
 const app = express();
 const PORT = process.env.port || 3001
-const fs = require('fs')
-const notes = require('./db/db.json')
+// const fs = require('fs')
+// const notes = require('./db/db.json')
 const routes = require ('./routes/routes.js')
 app.use(express.static('routes'))
 app.use(express.static('public'));
